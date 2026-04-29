@@ -1,0 +1,628 @@
+/**
+ * ═════════════════════════════════════════════════════════════
+ * MILDECOR FRONTEND - CSS BUNDLE
+ * ═════════════════════════════════════════════════════════════
+ *
+ * Custom CSS bundle for mildecor.fr
+ * Loaded in Squarespace Header Code Injection via <link>
+ *
+ * Sections (in order of cascade priority):
+ *   1. CSS Variables (brand tokens, customizable from one place)
+ *   2. Color badges (product blocks, summary, listings, detail)
+ *   3. Pro logo (image swap on .is-pro pages)
+ *   4. Mobile search button
+ *   5. Mega menu (underline removal, plugin overrides)
+ *   6. HelpfulCrowd widget margins
+ *   7. Squarespace code blocks (remove placeholder spacing)
+ *   8. Carousel summary (height fix)
+ *   9. Underline removal (links, navigation)
+ *   10. Z-index fixes (filters above other elements)
+ *   11. Lightbox inputs (white background)
+ *   12. Add to cart button
+ *   13. Search loupe (desktop, mobile, burger menu)
+ *   14. Header Pro theme (dark variant when .is-pro)
+ *   15. Product image borders
+ *   16. Category badges (above product title)
+ *   17. Video block ratio
+ *   18. Mobile-only styles (related products grid, menu typography, back button)
+ *   19. Search bar styling
+ *   20. Back button (mobile, product pages)
+ *
+ * @author Julien Laumonerie / Nerie Studio
+ * @version 1.0.0
+ * @license MIT
+ */
+
+
+/* ─────────────────────────────────────────────────────────────
+   1. CSS VARIABLES (brand tokens)
+   Single source of truth — change here, applies everywhere
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --mld-primary:       #FF7847;
+  --mld-primary-alt:   #FF7A49;
+  --mld-background:    #F1F1E5;
+  --mld-foreground:    #141414;
+  --mld-pro-bg:        #222223;
+  --mld-pro-bg-deep:   #1e1e1e;
+  --mld-border-light:  rgba(0, 0, 0, 0.12);
+  --mld-border-mid:    rgba(0, 0, 0, 0.08);
+  --mld-text-muted:    #888;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. COLOR BADGES — Tag "Couleurs" products
+   ───────────────────────────────────────────────────────────── */
+.mld-color-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--mld-foreground);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 100;
+  text-transform: uppercase;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+/* CSS-only badge for boutique listings */
+.product-list-item.tag-couleurs .product-list-image-wrapper {
+  position: relative;
+}
+.product-list-item.tag-couleurs .product-list-image-wrapper::before {
+  content: "Couleur";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--mld-foreground);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 100;
+  text-transform: uppercase;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+/* CSS-only badge for product detail page */
+.product-detail.tag-couleurs .product-images {
+  position: relative;
+}
+.product-detail.tag-couleurs .product-images::before {
+  content: "Couleur";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--mld-foreground);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  z-index: 100;
+  text-transform: uppercase;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. PRO LOGO — Image swap on .is-pro pages
+   ───────────────────────────────────────────────────────────── */
+html.is-pro .header-title-logo img {
+  content: url('https://static1.squarespace.com/static/69541faa1b5b1e1843da0bbc/t/69e8a8a49a2cee684070a2f9/1776855204621/PRO+%281%29.png');
+}
+
+/* Text logo fallback */
+html.is-pro .header-title-text a {
+  font-family: inherit;
+}
+html.is-pro .header-title-text a::before {
+  content: 'Mildecor Pro';
+  display: inline-block;
+}
+html.is-pro .header-title-text a span {
+  display: none;
+}
+
+/* Hide mobile search button on PRO pages */
+html.is-pro #mobile-search-btn {
+  display: none !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. MOBILE SEARCH BUTTON
+   ───────────────────────────────────────────────────────────── */
+#mobile-search-btn {
+  margin-right: 12px;
+}
+
+.header-display-mobile .showOnMobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. MEGA MENU — Override plugin defaults
+   ───────────────────────────────────────────────────────────── */
+.mega-menu-link {
+  background-image: none !important;
+}
+
+.header-nav-item a {
+  background-image: none !important;
+}
+
+.wm-mega-menu-plugin .header-nav-list {
+  gap: revert !important;
+}
+
+.wm-mega-menu-plugin .header-nav-item {
+  padding: revert !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. HELPFULCROWD WIDGET — Margin/padding fixes
+   ───────────────────────────────────────────────────────────── */
+.product-title .hc-product-summary,
+.product-title .hc-widget {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.summary-price .hc-widget:has(.hc-stars:empty) {
+  display: none;
+}
+
+.summary-price .hc-widget {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#hc-reviews-tab {
+  margin-bottom: 60px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. SQUARESPACE CODE BLOCKS — Remove placeholder spacing
+   ───────────────────────────────────────────────────────────── */
+.sqs-block-code {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   8. CAROUSEL SUMMARY — Remove fixed height
+   ───────────────────────────────────────────────────────────── */
+.summary-block-setting-design-carousel .sqs-gallery-container,
+.summary-block-setting-design-carousel .sqs-gallery-design-carousel {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   9. UNDERLINE REMOVAL — Global, links, navigation
+   ───────────────────────────────────────────────────────────── */
+a {
+  text-decoration: none !important;
+}
+
+.sqs-html-content a,
+.sqs-block-html a,
+.sqs-html-content a span,
+.sqs-block-html a span {
+  text-decoration: none !important;
+}
+
+[class*="sqsrte-text-color--"] {
+  text-decoration: none !important;
+}
+
+.header-nav-folder-title,
+.header-nav-folder-title-text,
+.header-nav-item a,
+.header-nav-item--active a,
+.header-nav-folder--active .header-nav-folder-title {
+  text-decoration: none !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   10. Z-INDEX — Filters above other elements
+   ───────────────────────────────────────────────────────────── */
+.page-section {
+  z-index: auto !important;
+}
+
+.product-list-nav-and-filters {
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+.product-list-filters {
+  z-index: 9999 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   11. LIGHTBOX INPUTS — White background
+   ───────────────────────────────────────────────────────────── */
+.lightbox-content .field-element,
+.lightbox-content input[type="text"],
+.lightbox-content textarea {
+  background-color: #FFFFFF !important;
+  color: var(--mld-foreground) !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   12. ADD TO CART BUTTON
+   ───────────────────────────────────────────────────────────── */
+.sqs-add-to-cart-button {
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   13. SEARCH LOUPE — Desktop, Mobile, Burger menu
+   ───────────────────────────────────────────────────────────── */
+
+/* Desktop search loupe */
+.header-display-desktop .header-nav-item a[href="/search"] {
+  font-size: 0 !important;
+  display: flex;
+  align-items: center;
+  width: 20px;
+}
+
+@media (min-width: 768px) {
+  .header-display-desktop .header-nav-item:has(a[href="/search"]) {
+    margin-left: 40px;
+    flex-shrink: 0;
+  }
+}
+
+.header-display-desktop .header-nav-item a[href="/search"]::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141414' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.is-pro .header-display-desktop .header-nav-item a[href="/search"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+}
+
+/* Burger menu search loupe */
+.header-menu .header-menu-nav-item a[href="/search"] {
+  font-size: 0 !important;
+  display: flex !important;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.header-menu .header-menu-nav-item a[href="/search"]::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141414' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   14. HEADER PRO THEME — Dark variant on .is-pro pages
+   ───────────────────────────────────────────────────────────── */
+.is-pro #header,
+.is-pro #header .header-inner,
+.is-pro #header .header-background {
+  background-color: var(--mld-pro-bg) !important;
+}
+
+.is-pro #header .header-border {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.is-pro #header .header-nav-folder-title,
+.is-pro #header .header-nav-folder-title-text,
+.is-pro #header .user-accounts-text-link {
+  color: #FFFFFF !important;
+}
+
+.is-pro #header .header-dropdown-icon svg {
+  stroke: #FFFFFF !important;
+}
+
+.is-pro #header .header-nav-folder-content {
+  background-color: var(--mld-pro-bg-deep) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.is-pro #header .header-nav-folder-item a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.is-pro #header .header-nav-folder-item a:hover,
+.is-pro #header .header-nav-folder-item--active a {
+  color: var(--mld-primary) !important;
+}
+
+.is-pro #header .icon--cart {
+  background-color: var(--mld-primary) !important;
+  box-shadow: none !important;
+}
+
+.is-pro #header .icon--cart path {
+  fill: #FFFFFF !important;
+}
+
+.is-pro #header .sqs-cart-quantity {
+  color: #FFFFFF !important;
+}
+
+.is-pro #header .top-bun,
+.is-pro #header .patty,
+.is-pro #header .bottom-bun {
+  background-color: #FFFFFF !important;
+}
+
+/* Mobile burger menu (PRO theme) */
+.is-pro .header-menu,
+.is-pro .header-menu-bg {
+  background-color: var(--mld-pro-bg) !important;
+}
+
+.is-pro .header-menu-nav-item a,
+.is-pro .header-menu-nav-item-content,
+.is-pro .header-menu .header-nav-folder-title-text {
+  color: #FFFFFF !important;
+}
+
+.is-pro .header-menu-nav-item a:hover,
+.is-pro .header-menu-nav-item a:hover .header-menu-nav-item-content {
+  color: var(--mld-primary) !important;
+}
+
+.is-pro .header-menu .header-dropdown-icon svg,
+.is-pro .header-menu-controls-control {
+  stroke: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   15. PRODUCT IMAGE BORDERS — Subtle 1px border on all images
+   ───────────────────────────────────────────────────────────── */
+
+/* Summary blocks */
+.summary-thumbnail.img-wrapper {
+  position: relative !important;
+}
+.summary-thumbnail.img-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--mld-border-light);
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Product list cards */
+.product-list-image-wrapper {
+  position: relative !important;
+  overflow: hidden;
+}
+.product-list-image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--mld-border-light);
+  border-radius: 9px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Product detail gallery */
+[data-product-detail-layout] .product-gallery-slides-item,
+[data-product-detail-layout] .product-gallery .slide,
+[data-product-detail-layout] .sqs-image-shape-container-element,
+[data-product-detail-layout] figure {
+  position: relative !important;
+  overflow: hidden;
+}
+
+[data-product-detail-layout] .product-gallery-slides-item::after,
+[data-product-detail-layout] .product-gallery .slide::after,
+[data-product-detail-layout] .sqs-image-shape-container-element::after,
+[data-product-detail-layout] figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--mld-border-light);
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 99;
+}
+
+[data-product-detail-layout] .product-images .sqs-slice-gallery-thumbnail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--mld-border-light);
+  border-radius: 9px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.product-detail .product-images .slide-wrapper,
+.product-detail .product-images .sqs-slice-gallery-thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-detail .product-images .slide-wrapper::after,
+.product-detail .product-images .sqs-slice-gallery-thumbnail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--mld-border-light);
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   16. CATEGORY BADGES — Pills above product title
+   ───────────────────────────────────────────────────────────── */
+.wm-product-categories {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 17px;
+}
+
+.wm-product-categories .product-category {
+  background: #FFFFFF;
+  color: var(--tweak-product-basic-item-title-color);
+  font-size: 12px;
+  border-radius: 2rem;
+  padding: 4px 16px;
+  line-height: 1.5em;
+  display: flex;
+  align-items: center;
+  align-self: start;
+  border: 0.5px solid #000000;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   17. VIDEO BLOCK — Vertical ratio
+   ───────────────────────────────────────────────────────────── */
+.video-block .video-player {
+  padding-bottom: 120% !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   18. MOBILE-ONLY STYLES
+   ───────────────────────────────────────────────────────────── */
+
+/* Related products: stack vertically */
+@media screen and (max-width: 767px) {
+  .product-related-products.related-products.product-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Burger menu typography */
+@media (max-width: 767px) {
+  .header-menu-nav-item a,
+  .header-menu-nav-folder-item a,
+  .header-menu-nav-item button {
+    font-size: 20px !important;
+  }
+  .header-nav-folder-title-text {
+    font-size: 20px !important;
+  }
+}
+
+/* Burger menu back button (French) */
+@media (max-width: 767px) {
+  .header-menu-controls-control span:not(.header-dropdown-icon) {
+    font-size: 0;
+  }
+  .header-menu-controls-control span:not(.header-dropdown-icon)::before {
+    content: "Retour";
+    font-size: 20px;
+  }
+  .header-menu-controls {
+    padding-left: 5px;
+  }
+  .header-menu-controls-control {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   19. SEARCH BAR STYLING (Monocle Search input)
+   ───────────────────────────────────────────────────────────── */
+#block-yui_3_17_2_1_1767127104684_5917 .search-input,
+#block-485ed3cd1839e6e8d7ae .search-input {
+  border-radius: 100px;
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+  padding: 12px 40px;
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+#block-yui_3_17_2_1_1767127104684_5917 .search-input:hover,
+#block-yui_3_17_2_1_1767127104684_5917 .search-input:focus,
+#block-485ed3cd1839e6e8d7ae .search-input:hover,
+#block-485ed3cd1839e6e8d7ae .search-input:focus {
+  background-color: #ffffff;
+  border-color: #333333;
+  outline: none;
+}
+
+#block-yui_3_17_2_1_1767127104684_5917 .search-input::placeholder,
+#block-485ed3cd1839e6e8d7ae .search-input::placeholder {
+  color: #666666;
+  opacity: 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   20. BACK BUTTON — Mobile, product pages
+   ───────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .mld-back-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mld-back-btn {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--mld-text-muted);
+    text-decoration: none;
+    padding: 20px 0 0;
+    margin-left: var(--sqs-mobile-site-gutter, 0vw);
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   END OF MILDECOR CSS BUNDLE
+   ───────────────────────────────────────────────────────────── */
