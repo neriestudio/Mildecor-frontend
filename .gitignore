@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Backup
+_backup_*/
+*.bak
+
+# Local env
+.env
+.env.local
+
+# Node (if you ever add a build step later)
+node_modules/
+package-lock.json
+yarn.lock
