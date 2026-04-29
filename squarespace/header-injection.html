@@ -1,0 +1,37 @@
+<!-- ═════════════════════════════════════════════════════════════
+     MILDECOR — HEADER CODE INJECTION (Squarespace)
+     ═════════════════════════════════════════════════════════════
+     Last updated: 2026-04-30
+     Version: v1.0.0
+     Repo: https://github.com/neriestudio/Mildecor-frontend
+     ═════════════════════════════════════════════════════════════
+     This replaces ~140 lines of inline code with 5 lines of CDN imports.
+
+     ⚠️  IMPORTANT: BEFORE deploying this version, BACKUP the current
+     Header Code Injection content in a local file (see DEPLOY-GUIDE.md).
+
+     ⚠️  All tracking (GA4, Clarity, Google Ads) and pro detection logic
+     are now handled by mildecor-header.js. Do NOT add them inline here.
+
+     Hot rollback: replace this with the backup content. Site reverts in 30s.
+═══════════════════════════════════════════════════════════════════ -->
+
+
+<!-- ─── 1. Custom CSS (Mildecor brand styles) ─── -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/neriestudio/Mildecor-frontend@main/dist/mildecor.css">
+
+
+<!-- ─── 2. Custom JS Header (analytics + utils + pro detection + early UI) ─── -->
+<script src="https://cdn.jsdelivr.net/gh/neriestudio/Mildecor-frontend@main/dist/mildecor-header.js"></script>
+
+
+<!-- ─── 3. Third-party plugins (NOT managed by us — kept here on purpose) ─── -->
+
+<!-- HelpfulCrowd reviews -->
+<script defer src="https://app.helpfulcrowd.com/res/squarespace/scripts/J8SdPQO.js"></script>
+
+<!-- Will Myers Toolkit (utility library) -->
+<script src="https://cdn.jsdelivr.net/gh/willmyerscode/toolkit@1/index.min.js"></script>
+
+<!-- Will Myers Mega Menu CSS -->
+<link href="https://cdn.jsdelivr.net/gh/willmyerscode/megaMenu@2/megaMenu.min.css" rel="stylesheet" />
